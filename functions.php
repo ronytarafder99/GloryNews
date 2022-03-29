@@ -204,13 +204,14 @@ function diwp_custom_metabox_callback()
 {
     global $post;
 ?>
-    <div class="row">
-        <div class="label">Like: www.youtube.com/watch?v=hhNctIlXVsw...just Put"puthhNctIlXVsw" without ""</div>
-        <div class="fields">
-            <input type="text" name="_diwp_reading_time" value="<?php echo get_post_meta($post->ID, 'post_reading_time', true) ?>" />
-        </div>
+<div class="row">
+    <div class="label">Like: www.youtube.com/watch?v=hhNctIlXVsw...just Put"puthhNctIlXVsw" without ""</div>
+    <div class="fields">
+        <input type="text" name="_diwp_reading_time"
+            value="<?php echo get_post_meta($post->ID, 'post_reading_time', true) ?>" />
     </div>
-    <?php
+</div>
+<?php
 
 }
 
@@ -285,4 +286,8 @@ function wcr_share_buttons()
 }
 
 require get_template_directory() . '/inc/ajax.php';
+
 require_once('inc/location_functions.php');
+
+// Bangla Date Functions
+require_once('inc/dateEngToBanglaConverter.php');

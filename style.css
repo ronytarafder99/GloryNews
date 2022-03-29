@@ -1,5 +1,5 @@
 /*
-Theme Name: jagonews
+Theme Name: GloryNews
 Theme URI: https://web.facebook.com/ronytarafder99/
 Author: Rony Tarafder
 Author URI: https://web.facebook.com/ronytarafder99/
@@ -308,6 +308,7 @@ small.time_date {
     font-weight: 700;
     color: #ffff;
     padding-left: 3px;
+    font-size: 12px;
 }
 
 .for_header_search_form {
@@ -357,7 +358,7 @@ ul.sub-menu li {
 
 ul.sub-menu li a {
     color: #000000;
-    padding: 0;
+    padding: 0;    font-size: 16px;
 }
 
 ul.sub-menu li:hover {
@@ -372,7 +373,7 @@ ul.sub-menu li:hover a {
 
 .bottom_header_container a {
     color: #fff;
-    font-size: 20px;
+    font-size: 18px;
     padding: 10px 0 10px 10px;
 }
 
@@ -399,7 +400,25 @@ ul.sub-menu li:hover a {
 .home_page_part_one_bg {
     padding: 10px 0;
 }
-
+.tranding-tag-gray a {
+    margin-right: 9px;
+    position: relative;
+    display: inline-block;
+    color: #333;
+    font-size: 16px;
+    padding: 0 11px;
+    line-height: 30px;
+    border-radius: 4px;
+    height: 28px;
+    background: #f1f1f1;
+}.tranding-tag-gray span {
+    font-weight: 700;
+    font-size: 17px;
+    margin-left: 6px;
+    margin-right: 10px;
+}.tranding-tag-gray {
+    margin-bottom: 15px;
+}
 .marquee_container_bg {
     position: fixed;
     bottom: 0;
@@ -2481,7 +2500,7 @@ li.tab_post a:hover {
         display: none;
     }
 
-    .sports_cat_title .archieve_top_cat{
+    .sports_cat_title .archieve_top_cat {
         display: none;
     }
 

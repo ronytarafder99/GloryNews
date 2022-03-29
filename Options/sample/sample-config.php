@@ -813,6 +813,13 @@ Redux::setSection($opt_name, array(
     'subsection' => true,
     'fields'     => array(
         array(
+            'id'       => 'time-switch',
+            'type'     => 'switch',
+            'title'    => __('Show Time in Bangla/Eng', 'redux-framework-demo'),
+            'subtitle' => __('on means bangla!', 'redux-framework-demo'),
+            'default'  => true,
+        ),
+        array(
             'id'       => 'opt-background1',
             'type'     => 'background',
             'output'   => array('.bottom_header_bg, .leatest_one_video_post, .all-videos , .marquee_name , .search_form_div'),

@@ -19,17 +19,40 @@
         <div class="top_header_bg">
             <div class="custom_container top_header_container">
                 <div class="time_part">
-                    <small class="time_date"><span><?php the_time('l , j F Y ') ?></span><span><?php echo do_shortcode('[bangla_date]'); ?></span></small>
+                    <small class="time_date">
+                        <span>
+                            <?php date_default_timezone_set('Asia/Dhaka');
+                            if ($redux_demo['time-switch'] == '1') {
+                                echo bn_number(date('l , j F Y'));
+                            } else {
+                                echo date('l , j F Y');
+                            } ?>
+                        </span>
+                        <span>
+                            <?php
+                             if ($redux_demo['time-switch'] == '1') {
+                                $time = time(); $Bdate = BDdate($time); echo $Bdate;
+                            } else {
+                                echo date('j F Y');
+                            } ?>
+                        </span>
+                    </small>
                 </div>
                 <div class="logo_part">
-                    <a href="<?php bloginfo('home'); ?>"><img width="<?php echo $redux_demo['width']; ?>" height="<?php echo $redux_demo['height']; ?>" src="<?php echo $redux_demo['logo']['url']; ?>" alt="<?php echo $redux_demo['alt']; ?>"></a>
+                    <a href="<?php bloginfo('home'); ?>"><img width="<?php echo $redux_demo['width']; ?>"
+                            height="<?php echo $redux_demo['height']; ?>"
+                            src="<?php echo $redux_demo['logo']['url']; ?>" alt="<?php echo $redux_demo['alt']; ?>"></a>
                 </div>
                 <div class="social_part">
                     <ul class="social">
-                        <li><a target="_blank" href="<?php echo $redux_demo['facebook']; ?>"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a target="_blank" href="<?php echo $redux_demo['Youtube']; ?>"><i class="fab fa-youtube"></i></a></li>
-                        <li><a target="_blank" href="<?php echo $redux_demo['twitter']; ?>"><i class="fab fa-twitter"></i></a></li>
-                        <li><a target="_blank" href="<?php echo $redux_demo['instagram']; ?>"><i class="fab fa-instagram"></i></a></li>
+                        <li><a target="_blank" href="<?php echo $redux_demo['facebook']; ?>"><i
+                                    class="fab fa-facebook-f"></i></a></li>
+                        <li><a target="_blank" href="<?php echo $redux_demo['Youtube']; ?>"><i
+                                    class="fab fa-youtube"></i></a></li>
+                        <li><a target="_blank" href="<?php echo $redux_demo['twitter']; ?>"><i
+                                    class="fab fa-twitter"></i></a></li>
+                        <li><a target="_blank" href="<?php echo $redux_demo['instagram']; ?>"><i
+                                    class="fab fa-instagram"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -42,7 +65,10 @@
                         <a id="home" href="<?php bloginfo('home'); ?>"><i class="fa fa-home"></i></a>
                     </div>
                     <div class="logo_part mobile_logo">
-                        <a href="<?php bloginfo('home'); ?>"><img width="<?php echo $redux_demo['width']; ?>" height="<?php echo $redux_demo['height']; ?>" src="<?php echo $redux_demo['logo']['url']; ?>" alt="<?php echo $redux_demo['alt']; ?>"></a>
+                        <a href="<?php bloginfo('home'); ?>"><img width="<?php echo $redux_demo['width']; ?>"
+                                height="<?php echo $redux_demo['height']; ?>"
+                                src="<?php echo $redux_demo['logo']['url']; ?>"
+                                alt="<?php echo $redux_demo['alt']; ?>"></a>
                     </div>
                     <?php $header_menu = 'header_menu';
                     if (has_nav_menu($header_menu)) {
@@ -55,7 +81,8 @@
                         ));
                     } ?>
                     <ul class="ul_menu always_show">
-                        <li><a href="<?php echo $redux_demo['english']; ?>" target="_blank"><span class="en-edition"> <?php echo $redux_demo['english_title']; ?> </span></a></li>
+                        <li><a href="<?php echo $redux_demo['english']; ?>" target="_blank"><span class="en-edition">
+                                    <?php echo $redux_demo['english_title']; ?> </span></a></li>
                     </ul>
                 </div>
                 <div class="search_container">
