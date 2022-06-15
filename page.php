@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<div class="page_container">
+<div class="custom_container">
     <?php if (have_posts()) :
         while (have_posts()) : the_post(); ?>
             <article class="page">

@@ -25,6 +25,7 @@ jQuery(document).ready(function () {
         jQuery('.cross_icon').toggle();
         jQuery('.scrollmenu').toggle();
         jQuery('.header_mobile_menu').slideToggle();
+        jQuery('.bottom_header_bg').addClass("nav-color")
     });
     jQuery('.cross_icon').click(function () {
         jQuery('#home').toggle();
@@ -33,6 +34,7 @@ jQuery(document).ready(function () {
         jQuery('.scrollmenu').toggle();
         jQuery('.cross_icon').toggle();
         jQuery('.header_mobile_menu').slideToggle();
+        jQuery('.bottom_header_bg').removeClass("nav-color")
     });
 
     // Tab post(Leatest-popular)
@@ -68,38 +70,41 @@ jQuery(document).ready(function () {
     });
 
 
+    // PhotoGallery LightSlider Hook
+    jQuery('#lightgallery').lightGallery();
+
     /* Ajax functions for cat*/
-    jQuery(document).on('click', '.sunset-load-more', function () {
+    // jQuery(document).on('click', '.sunset-load-more', function () {
 
-        var that = jQuery(this);
-        var page = jQuery(this).data('page');
-        var newPage = page + 1;
-        var ajaxurl = that.data('url');
-        var cat = that.data('category');
-        jQuery('.animation_image').css("display", "block");
+    //     var that = jQuery(this);
+    //     var page = jQuery(this).data('page');
+    //     var newPage = page + 1;
+    //     var ajaxurl = that.data('url');
+    //     var cat = that.data('category');
+    //     jQuery('.animation_image').css("display", "block");
 
-        jQuery.ajax({
+    //     jQuery.ajax({
 
-            url: ajaxurl,
-            type: 'post',
-            data: {
-                cat: cat,
-                page: page,
-                action: 'sunset_load_more'
+    //         url: ajaxurl,
+    //         type: 'post',
+    //         data: {
+    //             cat: cat,
+    //             page: page,
+    //             action: 'sunset_load_more'
 
-            },
-            error: function (response) {
-                console.log(response);
-            },
-            success: function (response) {
+    //         },
+    //         error: function (response) {
+    //             console.log(response);
+    //         },
+    //         success: function (response) {
 
-                jQuery('.animation_image').css("display", "none");
-                that.data('page', newPage);
-                jQuery('.sunset-posts-container').append(response);
+    //             jQuery('.animation_image').css("display", "none");
+    //             that.data('page', newPage);
+    //             jQuery('.sunset-posts-container').append(response);
 
-            }
-        });
-    });
+    //         }
+    //     });
+    // });
 
     // tab Post Ajax
     jQuery('.nav-tabs li a').click(function () {
@@ -140,7 +145,7 @@ jQuery(window).load(function () {
         itemWidth: 250,
         slideshowSpeed: 3000,
         animationSpeed: 2000,
-        itemMargin: 5,
+        itemMargin: 10,
         minItems: 3,
         maxItems: 3,
     });

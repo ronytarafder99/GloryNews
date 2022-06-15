@@ -6,9 +6,9 @@
         <h5 style="display: flex; align-items: center;">
           <i class="fa fa-search" style="color:#9a1515; margin-right:10px;"></i>
           <div class="pv_bread">
-            <a href="<?php bloginfo('home'); ?>"><?php echo $redux_demo['home_heading']; ?></a>
+            <a href="<?php bloginfo('home'); ?>"><?php echo $wesoftpress['home_heading']; ?></a>
             <?php echo "<b>&nbsp;&nbsp;&#187;&nbsp;&nbsp;</b>"; ?>
-            <a href="<?php bloginfo('home'); ?>/all-posts/"><?php echo $redux_demo['latest_all_only']; ?></a>
+            <a href="<?=get_all_post_page_link();?>"><?php echo $wesoftpress['latest_all_only']; ?></a>
             <?php echo "<b>&nbsp;&nbsp;&#187;&nbsp;&nbsp;</b>"; ?>
             <?php the_search_query(); ?>
           </div>

@@ -1,5 +1,6 @@
-<?php get_header(); ?>
-<?php if (have_posts()) : ?>
+<?php get_header();
+global $read_more;
+if (have_posts()) : ?>
     <div class="home_page_part_one_bg">
         <div class="custom_container">
             <div class="breadcrumb" style="background-color: transparent; padding-top: 10px !important;">
@@ -9,31 +10,18 @@
                 </h2>
             </div>
             <div class="tag_page_post white_bg sunset-posts-container">
-                <?php while (have_posts()) : ?>
-                    <?php the_post(); ?>
-                    <div class="tag_posts border_bottom">
-                        <a class="tag_post_thumb" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-                            <?php if (has_post_thumbnail()) {
-                                the_post_thumbnail('custom-size');
-                            } else { ?>
-                                <img src="<?php bloginfo('template_directory'); ?>/img/default-img_final.gif" alt="<?php the_title(); ?>" />
-                            <?php } ?></a>
-                        <div class="direction_coloumn">
-                            <h3 class="tag_post_title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                            <small> <?php the_time('F j, Y g:i a'); ?></small>
-                            <p><?php custom_length_excerpt(30); ?></p>
-                        </div>
-                    </div>
-                <?php endwhile; ?>
-            </div>
-            <div class="pagination1">
-                <div class="pagi_inner">
-                    <?php echo paginate_links(array(
-                        'prev_text' => __('&laquo;', 'textdomain'),
-                        'next_text' => __('&raquo;', 'textdomain'),
-                    )); ?>
-                </div>
-            </div>
+            <?php while (have_posts()) : the_post();
+            get_template_part( 'template-parts/post/tag-post');
+            endwhile; ?>
+        </div>
+        <?php
+        global $wp_query;
+        if (  $wp_query->max_num_pages > 1 )
+          echo '<div class="text-center paddingBottom20">
+          <button class="sunset-load-more" id="load_more_button"><img alt="Loader"
+          src="'.get_template_directory_uri().'/img/ajax-loader.gif" class="animation_image"
+          style="margin-right: 5px; width: 21px; display: none;"> <span class="text">'.$read_more.'</span></button>
+          </div>'; ?>
         </div>
     </div>
 <?php else :

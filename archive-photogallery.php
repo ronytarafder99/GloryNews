@@ -1,72 +1,88 @@
 <?php get_header(); ?>
-<div class="custom_container">
-    <div class="home_page_part_one_bg">
-        <div class="custom_container home_page_part_one">
-            <div class="home_page_part_one_left">
-                <?php get_template_part('template-parts/content-myslide-pic'); ?>
-            </div>
-            <div class="home_page_part_one_right">
-                <div class="button_group border_around">
-                    <button class="leatest_btn"><?php echo $redux_demo['latest_only']; ?></button>
-                    <Button class="popular_btn"><?php echo $redux_demo['most_read']; ?></Button>
-                </div>
-                <div class="fixed_height archive_non_fix_height border_around">
-                    <ul class="first_item">
-                        <?php $args = array(
-                            'posts_per_page' => 10,
-                            'order' => 'DESC',
-                            'post_type' => 'photogallery'
-                        );
+<main id="main-content">
+    <section class="box-white photo">
+        <div class="custom_container">
+            <div class="marginTopBottom20">
+                <div class="row">
+                    <div class="col-md-8 main-content">
+                        <?php get_template_part('template-parts/content-myslide-pic'); ?>
+                    </div>
+                    <aside class="col-md-4 aside">
+                        <div class="border_around">
+                            <div class="button_group">
+                                <button class="leatest_btn"><?php echo $wesoftpress['latest_only']; ?></button>
+                                <Button class="popular_btn"><?php echo $wesoftpress['most_read']; ?></Button>
+                            </div>
+                            <div>
+                                <ul class="first_item">
+                                    <?php $args = array(
+                                        'posts_per_page' => 6,
+                                        'order' => 'DESC',
+                                        'post_type' => 'photogallery'
+                                    );
 
-                        $lastpost = new WP_Query($args);
-                        if ($lastpost->have_posts()) : while ($lastpost->have_posts()) : $lastpost->the_post(); ?>
-                                <ul>
-                                    <a href="<?php the_permalink(); ?>">
-                                        <thumb> <?php if (has_post_thumbnail()) {
-                                                    the_post_thumbnail('custom-size');
+                                    $lastpost = new WP_Query($args);
+                                    if ($lastpost->have_posts()) : while ($lastpost->have_posts()) : $lastpost->the_post(); ?>
+                                    <li class="media photo_tab">
+                                        <div class="media-left">
+                                            <a href="<?php the_permalink(); ?>">
+                                                <?php if (has_post_thumbnail()) {
+                                                    the_post_thumbnail();
                                                 } else { ?>
-                                                <img src="<?php bloginfo('template_directory'); ?>/img/default-img_final.gif" alt="<?php the_title(); ?>" />
-                                            <?php } ?>
-                                    </a>
-                                    <li class="tab_post"><a href="<?php the_permalink(); ?>"><?php echo wp_trim_words(get_the_title(), 8); ?></a></li>
+                                                <img src="<?php bloginfo('template_directory'); ?>/img/default-img_final.gif"
+                                                    alt="<?php the_title(); ?>" />
+                                                <?php } ?>
+                                            </a></div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">
+                                                <a href="<?php the_permalink(); ?>"><?php echo wp_trim_words(get_the_title(), 13); ?></a></h4>
+                                        </div>
+                                    </li>
+                                    <?php endwhile;
+                                else :
+                                    echo '<P>no posts found</P>';
+                                endif;
+                                wp_reset_postdata(); ?>
                                 </ul>
-                        <?php endwhile;
-                        else :
-                            echo '<P>no posts found</P>';
-                        endif;
-                        ?>
-                    </ul>
-                    <ul class="second_item">
-                        <?php $popular = new WP_Query(array('posts_per_page' => 10, 'meta_key' => 'popular_posts', 'orderby' => 'meta_value_num', 'order' => 'DESC'));
-                        while ($popular->have_posts()) : $popular->the_post(); ?>
-                            <ul>
-                                <a href="<?php the_permalink(); ?>">
-                                    <thumb> <?php if (has_post_thumbnail()) {
-                                                the_post_thumbnail('custom-size');
-                                            } else { ?>
-                                            <img src="<?php bloginfo('template_directory'); ?>/img/default-img_final.gif" alt="<?php the_title(); ?>" />
-                                        <?php } ?>
-                                </a>
-                                <li class="tab_post"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
-                            </ul>
-                        <?php endwhile;
-                        wp_reset_postdata(); ?>
-                    </ul>
+                                <ul class="second_item">
+                                    <?php $popular = new WP_Query(array('posts_per_page' => 6, 'meta_key' => 'popular_posts', 'orderby' => 'meta_value_num', 'order' => 'DESC',  'post_type' => 'photogallery',));
+                                while ($popular->have_posts()) : $popular->the_post(); ?>
+                                    <li class="media photo_tab">
+                                        <div class="media-left">
+                                            <a href="<?php the_permalink(); ?>">
+                                                <?php if (has_post_thumbnail()) {
+                                                    the_post_thumbnail();
+                                                } else { ?>
+                                                <img src="<?php bloginfo('template_directory'); ?>/img/default-img_final.gif"
+                                                    alt="<?php the_title(); ?>" />
+                                                <?php } ?>
+                                            </a></div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">
+                                                <a href="<?php the_permalink(); ?>"><?php echo wp_trim_words(get_the_title(), 13); ?></a></h4>
+                                        </div>
+                                    </li>
+                                    <?php endwhile;
+                                wp_reset_postdata(); ?>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </aside>
                 </div>
             </div>
-        </div>
-    </div>
-    <?php
-    $subcategories = get_terms(array(
-        'taxonomy' => 'photogallery-categories',
-        'hide_empty' => false,
-    ));
-    $arrayLength = count($subcategories);
-    $i = 0;
-    while ($i < $arrayLength) { ?>
 
-        <div class="photo_subcat">
-            <?php $lastpost = new WP_Query(array(
+            <?php
+            $subcategories = get_terms(array(
+                'taxonomy' => 'photogallery-categories',
+                'hide_empty' => false,
+            ));
+            $arrayLength = count($subcategories);
+            $i = 0;
+            while ($i < $arrayLength) { ?>
+
+            <div class="marginBottom20">
+                <?php $lastpost = new WP_Query(array(
                 'post_type' => 'photogallery',
                 'tax_query' => array(
                     array(
@@ -79,29 +95,40 @@
             if ($lastpost->have_posts()) :
             ?>
 
-                <h2 class="catTitle" style="margin:10px 0">
-                    <i class="fa fa-camera"></i> <?php echo sprintf('<a href="%s">%s</a>', get_category_link($subcategories[$i]->term_id), apply_filters('get_term', $subcategories[$i]->name)); ?><span class="liner"></span>
-                </h2>
-                <div class="photo_subcat_posts_grid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2 class="catTitle"><a href="<?php echo get_category_link($subcategories[$i]->term_id); ?>"><i
+                                    class="fa fa-camera"
+                                    style="margin-right:10px;"></i><?php echo $subcategories[$i]->name; ?></a><span
+                                class="liner"></span></h2>
+                    </div>
+                </div>
+                <div class="row">
                     <?php while ($lastpost->have_posts()) : $lastpost->the_post(); ?>
-                        <div class="single-block auto border_around">
+                    <div class="col-md-3">
+                        <div class="single-block auto">
                             <div class="img-box">
-                                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+                                <a href="<?php the_permalink() ?>" title="<?php the_title(); ?>">
                                     <?php if (has_post_thumbnail()) {
-                                        the_post_thumbnail('custom-size');
+                                        the_post_thumbnail();
                                     } else { ?>
-                                        <img src="<?php bloginfo('template_directory'); ?>/img/default-img_final.gif" alt="<?php the_title(); ?>" />
-                                    <?php } ?></a>
+                                    <img src="<?php bloginfo('template_directory'); ?>/img/default-img_final.gif"
+                                        alt="<?php the_title(); ?>" />
+                                    <?php } ?>
+                                </a>
                             </div>
-                            <h4><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php echo wp_trim_words(get_the_title(), 10); ?></a></h4>
+                            <h4><a href="<?php the_permalink() ?>"
+                                    title="<?php the_title(); ?>"><?php echo wp_trim_words(get_the_title(), 10); ?></a></h4>
                         </div>
+                    </div>
                     <?php endwhile; ?>
                 </div>
-            <?php endif;
-            ?>
-        </div>
-    <?php $i++;
-    } ?>
+                <?php endif; ?>
+            </div>
+            <?php $i++;
+            } ?>
 
-</div>
+        </div>
+    </section>
+</main>
 <?php get_footer(); ?>
